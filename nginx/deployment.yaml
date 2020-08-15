@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: argocd-study
+  labels:
+    argocd: nginx
+spec:
+  selector:
+    matchLabels:
+      argocd: nginx
+  replicas: 1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        argocd: nginx
+    spec:
+      containers:
+      - image: nginx:1.19.2
+        imagePullPolicy: IfNotPresent
+        name: nginx
